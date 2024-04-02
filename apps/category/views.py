@@ -1,4 +1,4 @@
-from apps.user.mixins import CustomLoginRequiredMixin
+from apps.users.mixins import CustomLoginRequiredMixin
 from rest_framework import generics
 import random
 
@@ -14,7 +14,6 @@ class CategoryAdd(CustomLoginRequiredMixin, generics.CreateAPIView):
         serializer = CategorySerializer()
         serializer.validate(request.data)
 
-        # Generate a random hexidecimal code for the color
         color_code = "#{:06x}".format(random.randint(0, 0xFFFFFF))
 
         request.data._mutable = True
